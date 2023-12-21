@@ -1,6 +1,6 @@
-path: ./data
-train: images/train # relative to root path
-val: images/train
+path: E:\Dev\GrapeYOLO\data
+train: images\train # relative to root path
+val: images\val
 
 # classes
 names:
