@@ -1,0 +1,9 @@
+path: ./data
+train: images/train # relative to root path
+val: images/train
+
+# classes
+names:
+  0: grape
+  1: scale_label
+  2: index
