@@ -1,0 +1,15 @@
+names:
+- grape_cluster
+- index
+- measure_label
+- rachis_cluster
+nc: 4
+roboflow:
+  license: CC BY 4.0
+  project: grapeyolo
+  url: https://universe.roboflow.com/grapeobject/grapeyolo/dataset/2
+  version: 2
+  workspace: grapeobject
+test: ./test/images
+train: ./train/images
+val: ./valid/images

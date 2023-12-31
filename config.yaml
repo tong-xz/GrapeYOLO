@@ -1,9 +1,0 @@
-path: E:\Dev\GrapeYOLO\data
-train: images\train # relative to root path
-val: images\val
-
-# classes
-names:
-  0: grape
-  1: scale_label
-  2: index
