@@ -48,7 +48,7 @@ class Detector(object):
         image = Image.open(image_path)
         fig, ax = plt.subplots()
         ax.imshow(image)
-
+        plt.figure(figsize=(40, 40))
         # 在图片上绘制每个边界框
         for obj in box_dict.keys():
             box = box_dict[obj]
@@ -57,21 +57,16 @@ class Detector(object):
                                      facecolor='none')
             # 添加矩形到绘图
             ax.add_patch(rect)
-            ax.text(box[0], box[1], f'{obj}', color='red', fontsize=8, verticalalignment='top')
+            ax.text(box[0], box[1], f'{obj}', color='red', fontsize=10, verticalalignment='top')
         plt.show()
 
 
 
 if __name__ == '__main__':
-    start = time.time()
+
     image_path = '../13A.jpg'
-    img = Image.open(image_path)
-    # rotated_img = img.rotate(270, expand=True)
-    # rotated_img.save('13A.jpg')
     detector = Detector('../results/detect/train25/weights/best.pt')
     result = detector.inference(image_path)
     box_dict = detector.get_all_boxes(result)
-    print(box_dict)
-    end = time.time()
-    print(end - start)
+
     detector.plt_all_boxes(image_path, box_dict)
