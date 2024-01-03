@@ -21,17 +21,22 @@ class Detector(object):
         @:return
         box_dict: {'class_name': box_tensor}
         '''
-
+        box_dict = {}
         for result in results:
             boxes = result.boxes
             tensor_classes = boxes.cls
 
-        tensor_classes = tensor_classes.cpu().numpy()
-        boxes = boxes.xyxy.cpu().numpy()
+            tensor_classes = tensor_classes.cpu().numpy()
 
-        box_dict = {}
-        for index, tensor in enumerate(boxes):
-            box_dict[self.cls_dict[index]] = tensor
+            boxes = boxes.xyxy.cpu().numpy()
+
+            for index, tensor in zip(tensor_classes, boxes):
+                box_dict[self.cls_dict[index]] = tensor
+            # print(tensor_classes)
+            #
+            # box_dict = {}
+            # for index, tensor in enumerate(boxes):
+            #     box_dict[self.cls_dict[index]] = tensor
         return box_dict
 
     def plt_all_boxes(self, image_path, box_dict):
@@ -59,11 +64,14 @@ class Detector(object):
 
 if __name__ == '__main__':
     start = time.time()
-    image_path = 'samples/1A_back_grape.jpg'
-    detector = Detector('results/detect/train25/weights/best.pt')
+    image_path = '../13A.jpg'
+    img = Image.open(image_path)
+    # rotated_img = img.rotate(270, expand=True)
+    # rotated_img.save('13A.jpg')
+    detector = Detector('../results/detect/train25/weights/best.pt')
     result = detector.inference(image_path)
     box_dict = detector.get_all_boxes(result)
-
+    print(box_dict)
     end = time.time()
     print(end - start)
     detector.plt_all_boxes(image_path, box_dict)
