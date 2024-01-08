@@ -1,19 +1,20 @@
+from PIL import Image
 import os
 
-path = 'data/images'
+# Define the directory containing the images
+image_directory = './samples'
 
-def get_file_names(folder_path):
-    file_names_without_extension = []
-    for root, dirs, files in os.walk(folder_path):
-        for file in files:
-            name, extension = os.path.splitext(file)
-            file_names_without_extension.append(name)
-    return file_names_without_extension
+# Loop through each file in the directory
+for filename in os.listdir(image_directory):
+    if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+        # Construct the full file path
+        file_path = os.path.join(image_directory, filename)
+        # Open the image
+        with Image.open(file_path) as img:
+            # Rotate the image 270 degrees
+            rotated_img = img.rotate(270, expand=True)
+            # Save the rotated image back to the same file
+            rotated_img.save(file_path)
 
-# 使用示例
-image_names = get_file_names(path)
-print(len(image_names))
-
-label_names = get_file_names(path)
-print(len(label_names))
-print(label_names == image_names)
+# Print a message when done
+print("All images in the directory have been rotated and saved.")

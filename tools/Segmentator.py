@@ -6,6 +6,7 @@ import torch
 import numpy as np
 
 
+
 class Segmentator:
     def __init__(self, model_path, DEVICE):
         self.model =FastSAM(model_path)
@@ -43,6 +44,8 @@ class Segmentator:
 
     def plot_graph(self, prompt_process, ann, output_path):
         prompt_process.plot(annotations=ann, output_path=output_path)
+
+
 
 
 if __name__ == '__main__':

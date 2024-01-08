@@ -1,0 +1,9 @@
+models:
+  Detection:
+    path: ""
+    version: ""
+    description: ""
+  Segmentation:
+    path: ""
+    version: ""
+    description: ""
